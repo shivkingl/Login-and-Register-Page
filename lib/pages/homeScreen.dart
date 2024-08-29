@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopping/controller/login_Controller.dart';
 import 'package:shopping/forms/register_form.dart';
 import 'package:shopping/pages/auth/login.dart';
 import 'package:shopping/pages/auth/register.dart';
@@ -21,7 +20,6 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   Clicking clicking =Clicking();
-  Register register = Register();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   SharedPreferenceshelper sharedPreferenceshelper =  SharedPreferenceshelper();
@@ -32,7 +30,6 @@ class _HomescreenState extends State<Homescreen> {
   void initState() {
     // TODO: implement initState
  showData();
- print(data);
     super.initState();
 
 }
@@ -78,24 +75,20 @@ class _HomescreenState extends State<Homescreen> {
                 setState(() {
 
                 });
-                print(clicking.touch);
-
-            
-                 /* Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>Register()),
-                  );*/         },style: ElevatedButton.styleFrom(
+                          },style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(50),
             
                     backgroundColor: Colors.grey),
                     child: Text(
+
+                      
                       'Register',
                       style: const TextStyle(
                           color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
                     )),
                 SizedBox(height: 20,),
                 ElevatedButton(onPressed: (){
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) =>Login()),
                   );         },style: ElevatedButton.styleFrom(
@@ -108,7 +101,6 @@ class _HomescreenState extends State<Homescreen> {
                           color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
                     )),
               clicking.touch ?  Container(height: 300,
-                color: Colors.blue,
                 child:RegisterForm(function: () async {
                   sharedPreferenceshelper.saveData(
                       context, usernameController.text,
